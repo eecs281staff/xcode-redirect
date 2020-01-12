@@ -14,8 +14,8 @@
 #include <cstdio>
 #include <cstring>
 
-inline char *get_filename_and_move_count(int &optind, char *argv[], int &move_count);
-inline void rotate_argv(int move_count, char *argv[], int &optind, int &argc);
+inline const char *get_filename_and_move_count(int &optind, const char *argv[], int &move_count);
+inline void rotate_argv(int move_count, const char *argv[], int &optind, int &argc);
 
 // REQUIRES: argc & argv from main(), and optind from getopt.h (optional)
 // MODIFIES: optind is incremented until it equals argc
@@ -26,8 +26,8 @@ inline void rotate_argv(int move_count, char *argv[], int &optind, int &argc);
 //     stdin (from < infilename or <infilename),
 //     stdout (from > outfilename or >outfilename), and/or
 //     stderr (from 2> errfilename or 2>errfilename).
-inline void xcode_redirect(int &argc, char *argv[], int optind = 1) {
-    char *infile = nullptr, *outfile = nullptr, *errfile = nullptr;
+inline void xcode_redirect(int &argc, const char *argv[], int optind = 1) {
+    const char *infile = nullptr, *outfile = nullptr, *errfile = nullptr;
     int move_count = 0;
     while (optind < argc) {
         switch (*argv[optind]) {
@@ -64,10 +64,10 @@ inline void xcode_redirect(int &argc, char *argv[], int optind = 1) {
     }  // while
 }  // xcode_redirect()
 
-inline void rotate_argv(int move_count, char *argv[], int &optind, int &argc) {
+inline void rotate_argv(int move_count, const char *argv[], int &optind, int &argc) {
     int moveind = optind - move_count;
-    char *temp_pre1 = argv[moveind];
-    char *temp_pre2 = argv[moveind + 1];
+    const char *temp_pre1 = argv[moveind];
+    const char *temp_pre2 = argv[moveind + 1];
     while (moveind + move_count < argc) {
         argv[moveind] = argv[moveind + move_count];
         ++moveind;
@@ -80,7 +80,7 @@ inline void rotate_argv(int move_count, char *argv[], int &optind, int &argc) {
     argc -= move_count;
 }  // rotate_argv()
 
-inline char *get_filename_and_move_count(int &optind, char *argv[], int &move_count) {
+inline const char *get_filename_and_move_count(int &optind, const char *argv[], int &move_count) {
     if (strlen(argv[optind]) > 2) {
         move_count = 1;
         // Must offset by 1 character (the <), offset by more if they put space(s) before filename

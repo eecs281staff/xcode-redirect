@@ -17,14 +17,15 @@ for:
 
 ### Download
 
-First, [download the file directly] or use `curl` or `wget`.
+First, [download the file directly](https://raw.githubusercontent.com/eecs281staff/xcode_redirect/master/xcode_redirect.hpp) 
+or use `curl` or `wget`.
 
 ```bash
-% wget https://gitlab.umich.edu/eecs281/xcode_redirect/raw/master/xcode_redirect.hpp
+% wget https://raw.githubusercontent.com/eecs281staff/xcode_redirect/master/xcode_redirect.hpp
 
 or
 
-% curl -O https://gitlab.umich.edu/eecs281/xcode_redirect/raw/master/xcode_redirect.hpp
+% curl -O https://raw.githubusercontent.com/eecs281staff/xcode_redirect/master/xcode_redirect.hpp
 ```
 
 
